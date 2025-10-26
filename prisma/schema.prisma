@@ -9,6 +9,24 @@ generator client {
   output   = "../src/generated/prisma"
 }
 
+// --- Modelo de Usuario para Autenticación ---
+
+model User {
+  // ID único (CUID) y fechas de auditoría
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Credenciales
+  email    String @unique // El email DEBE ser único
+  password String   // El hash de la contraseña
+
+  // Perfil (opcional)
+  firstName String? // El '?' lo hace opcional
+  lastName  String?
+}
+
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
