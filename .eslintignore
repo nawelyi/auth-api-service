@@ -1,0 +1,6 @@
+# Ignorar carpetas de dependencias y build
+node_modules
+dist
+
+# ¡Ignorar todo el código auto-generado por Prisma!
+src/generated
