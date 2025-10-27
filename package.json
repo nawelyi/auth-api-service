@@ -3,12 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "npx dotenv -e .env.development -- ts-node-dev --respawn --transpile-only src/index.ts",
     "build": "tsc",
-    "start": "node dist/index.js",
+    "start": "npx dotenv -e .env.development -- node dist/index.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "prepare": "husky install"
+
+    "test:env": "npx dotenv -e .env.test -- node -e \"console.log('Database URL from env:', process.env.DATABASE_URL)\"",
+  
+    "test": "npx dotenv -e .env.test -- jest --detectOpenHandles",
+    "db:dev:migrate": "npx dotenv -e .env.development -- prisma migrate dev",
+    "db:test:migrate": "npx dotenv -e .env.test -- prisma migrate dev",
+    "db:dev:generate": "npx dotenv -e .env.development -- prisma generate"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +27,9 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.4",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.9.1",
+    "@types/supertest": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
     "dotenv-cli": "^10.0.0",
@@ -29,8 +37,11 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "husky": "^8.0.0",
+    "jest": "^30.2.0",
     "prettier": "^3.6.2",
     "prisma": "^6.18.0",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.5",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   }
