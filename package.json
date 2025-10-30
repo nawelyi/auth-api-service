@@ -8,9 +8,7 @@
     "start": "npx dotenv -e .env.development -- node dist/index.js",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-
     "test:env": "npx dotenv -e .env.test -- node -e \"console.log('Database URL from env:', process.env.DATABASE_URL)\"",
-  
     "test": "npx dotenv -e .env.test -- jest --detectOpenHandles",
     "db:dev:migrate": "npx dotenv -e .env.development -- prisma migrate dev",
     "db:test:migrate": "npx dotenv -e .env.test -- prisma migrate dev",
@@ -22,10 +20,12 @@
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.18.0",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^17.2.3",
     "express": "^5.1.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.4",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.9.1",
