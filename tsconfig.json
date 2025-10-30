@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "verbatimModuleSyntax": false, // Importante para CommonJS
     "skipLibCheck": true,
+    "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src"] // ¡Súper importante!
